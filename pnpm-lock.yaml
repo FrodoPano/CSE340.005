@@ -8,7 +8,10 @@ importers:
 
   .:
     dependencies:
-      express:
+    ejs:
+        specifier: ^3.1.10
+        version: 3.1.10
+    express:
         specifier: ^5.1.0
         version: 5.1.0
 
