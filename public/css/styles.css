@@ -4,3 +4,204 @@
 *:after {
   box-sizing: border-box;
 }
+
+/******* Base Styles ***************/
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+#wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/******* Header Styles ***************/
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #1a3a5f;
+  color: white;
+}
+
+.siteName a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#tools a {
+  color: white;
+  text-decoration: none;
+}
+
+/******* Navigation Styles ***************/
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #2c5282;
+}
+
+nav li {
+  padding: 1rem 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  display: block;
+}
+
+nav a:hover {
+  background: #1a3a5f;
+}
+
+/******* Main Content Styles ***************/
+main {
+  padding: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0;
+  background: #e9ecef;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #2c5282;
+}
+
+/******* Featured Vehicle Styles ***************/
+.featured-vehicle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.featured-vehicle img {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #2c5282;
+  border-radius: 5px;
+}
+
+.featured-vehicle ul {
+  list-style: none;
+  padding: 0;
+}
+
+.own-today-btn {
+  background: #2c5282;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.own-today-btn:hover {
+  background: #1a3a5f;
+}
+
+/******* Upgrades Styles ***************/
+.upgrades {
+  margin-bottom: 2rem;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.upgrade-item {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.upgrade-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+/******* Reviews Styles ***************/
+.reviews ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reviews li {
+  background: #e9ecef;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-left: 4px solid #2c5282;
+}
+
+/******* Footer Styles ***************/
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1a3a5f;
+  color: white;
+}
+
+.copyright {
+  margin: 0;
+}
+
+/******* Media Queries for Larger Screens ***************/
+@media screen and (min-width: 768px) {
+  .upgrade-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  nav ul {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .upgrade-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  #home-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 2rem;
+  }
+  
+  .featured-vehicle {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  
+  .upgrades {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+  
+  .reviews {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+}
