@@ -11,15 +11,18 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  color: #333;
-  background-color: #f4f4f4;
+  color: #2c3e50;
+  background-color: #ecf0f1;
 }
 
 #wrapper {
   max-width: 1200px;
   margin: 0 auto;
   background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /******* Header Styles ***************/
@@ -27,35 +30,46 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #1a3a5f;
+  padding: 1rem 2rem;
+  background: #2c3e50;
   color: white;
 }
 
 .siteName a {
-  color: white;
+  color: #3498db;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 #tools a {
   color: white;
   text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+#tools a:hover {
+  background: #3498db;
 }
 
 /******* Navigation Styles ***************/
+nav {
+  background: #34495e;
+}
+
 nav ul {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
-  background: #2c5282;
 }
 
 nav li {
-  padding: 1rem 0;
+  border-bottom: 1px solid #2c3e50;
 }
 
 nav a {
@@ -63,49 +77,69 @@ nav a {
   text-decoration: none;
   padding: 1rem;
   display: block;
+  transition: background 0.3s;
 }
 
 nav a:hover {
-  background: #1a3a5f;
+  background: #2c3e50;
 }
 
 /******* Main Content Styles ***************/
 main {
   padding: 1rem;
+  flex: 1;
 }
 
 .hero {
   text-align: center;
-  padding: 2rem 0;
-  background: #e9ecef;
+  padding: 2rem 1rem;
+  background: #3498db;
+  color: white;
   margin-bottom: 2rem;
+  border-radius: 8px;
 }
 
 .hero h1 {
   margin: 0;
-  color: #2c5282;
+  font-size: 2rem;
 }
 
 /******* Featured Vehicle Styles ***************/
 .featured-vehicle {
-  text-align: center;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
   margin-bottom: 2rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.featured-vehicle h2 {
+  color: #2c3e50;
+  margin-top: 0;
 }
 
 .featured-vehicle img {
   max-width: 100%;
   height: auto;
-  border: 3px solid #2c5282;
-  border-radius: 5px;
+  border: 3px solid #3498db;
+  border-radius: 8px;
+  margin: 1rem 0;
 }
 
 .featured-vehicle ul {
   list-style: none;
   padding: 0;
+  margin: 1rem 0;
+}
+
+.featured-vehicle li {
+  padding: 0.3rem 0;
+  color: #7f8c8d;
 }
 
 .own-today-btn {
-  background: #2c5282;
+  background: #e74c3c;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -113,15 +147,26 @@ main {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 1rem;
+  transition: background 0.3s;
 }
 
 .own-today-btn:hover {
-  background: #1a3a5f;
+  background: #c0392b;
 }
 
 /******* Upgrades Styles ***************/
 .upgrades {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
   margin-bottom: 2rem;
+  border: 1px solid #ddd;
+}
+
+.upgrades h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  text-align: center;
 }
 
 .upgrade-grid {
@@ -132,50 +177,92 @@ main {
 
 .upgrade-item {
   text-align: center;
-  border: 1px solid #ddd;
+  background: white;
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.upgrade-item:hover {
+  transform: translateY(-5px);
 }
 
 .upgrade-item img {
   max-width: 100%;
-  height: auto;
+  height: 120px;
+  object-fit: cover;
   margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.upgrade-item h3 {
+  margin: 0.5rem 0 0;
+  color: #2c3e50;
+  font-size: 1rem;
 }
 
 /******* Reviews Styles ***************/
+.reviews {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+}
+
+.reviews h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  text-align: center;
+}
+
 .reviews ul {
   list-style: none;
   padding: 0;
 }
 
 .reviews li {
-  background: #e9ecef;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border-left: 4px solid #2c5282;
+  background: white;
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+  font-style: italic;
+  color: #7f8c8d;
 }
 
 /******* Footer Styles ***************/
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #1a3a5f;
+  padding: 1.5rem;
+  background: #2c3e50;
   color: white;
 }
 
 .copyright {
   margin: 0;
+  font-size: 0.9rem;
 }
 
 /******* Media Queries for Larger Screens ***************/
 @media screen and (min-width: 768px) {
-  .upgrade-grid {
-    grid-template-columns: repeat(2, 1fr);
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
   }
   
-  nav ul {
-    justify-content: flex-start;
+  nav li {
+    border-bottom: none;
+    border-right: 1px solid #2c3e50;
+  }
+  
+  nav li:last-child {
+    border-right: none;
+  }
+  
+  .upgrade-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -187,21 +274,48 @@ footer {
   #home-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto;
     grid-gap: 2rem;
+  }
+  
+  .hero {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
   }
   
   .featured-vehicle {
     grid-column: 1 / 2;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
+    margin-bottom: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
   
   .upgrades {
     grid-column: 2 / 3;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
+    margin-bottom: 0;
+    align-self: start;
   }
   
   .reviews {
     grid-column: 1 / 3;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
+  }
+  
+  .featured-vehicle-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .featured-vehicle img {
+    max-width: 300px;
+    margin: 0;
+  }
+  
+  .featured-vehicle-details {
+    flex: 1;
   }
 }
