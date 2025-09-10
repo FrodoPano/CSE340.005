@@ -59,6 +59,8 @@ VALUES ('Custom'),
 
 
 
+-- inventory-data
+
 -- Task 4: Modify the "GM Hummer" record description
 UPDATE inventory
 SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
