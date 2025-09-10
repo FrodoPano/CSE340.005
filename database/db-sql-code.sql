@@ -59,3 +59,16 @@ VALUES ('Custom'),
 
 
 
+-- Task 4: Modify the "GM Hummer" record description
+UPDATE inventory
+SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
+WHERE inv_make = 'GM' AND inv_model = 'Hummer';
+
+-- Task 6: Update image paths to include "/vehicles"
+UPDATE inventory
+SET 
+  inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+  inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+
+
