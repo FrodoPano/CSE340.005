@@ -1,0 +1,38 @@
+<%- include('../partials/head', {title: title}) %>
+
+<body>
+    <div id="wrapper">
+        <%- include('../partials/header') %>
+        <%- include('../partials/navigation') %>
+
+        <main>
+            <div class="error-container">
+                <h1><%= title %></h1>
+                
+                <div class="error-message">
+                    <p><%- message %></p>
+                </div>
+
+                <div class="error-humor">
+                    <% if (title === '404') { %>
+                        <div class="funny-404">
+                            <img src="/images/site/icon.png" alt="CSE Motors Icon" class="error-icon">
+                            <p>🚗💨 Whoops! Our mechanics must have taken this page for a test drive and forgot to bring it back!</p>
+                            <p>Don't worry, our team of highly trained developers is already looking under the hood.</p>
+                            <a href="/" class="back-home-btn">Take me back to the showroom</a>
+                        </div>
+                    <% } else { %>
+                        <div class="general-error">
+                            <p>🔧 Something went wrong in our garage!</p>
+                            <p>Our team has been notified and is working to get things running smoothly again.</p>
+                            <a href="/" class="back-home-btn">Return to Home</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>
