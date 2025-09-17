@@ -389,3 +389,89 @@ footer {
     background: #2c3e50;
     color: white;
 }
+
+/* Vehicle Detail Styles */
+.vehicle-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.vehicle-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    border: 3px solid #3498db;
+}
+
+.vehicle-info h1 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.price {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.specs {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #3498db;
+}
+
+.specs p {
+    margin: 0.8rem 0;
+    font-size: 1.1rem;
+}
+
+.specs strong {
+    color: #2c3e50;
+}
+
+.description h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.description p {
+    line-height: 1.6;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .vehicle-detail {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+    
+    .vehicle-info {
+        padding: 1rem;
+    }
+}
+
+/* Footer Error Test Link */
+.error-test-link {
+    margin-top: 0.5rem;
+}
+
+.error-test-link a {
+    color: #95a5a6;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.error-test-link a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
