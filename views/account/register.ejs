@@ -1,0 +1,89 @@
+<%- include('../partials/head', {title: title}) %>
+
+<body>
+    <div id="wrapper">
+        <%- include('../partials/header') %>
+        <%- include('../partials/navigation') %>
+
+        <main>
+            <div class="register-container">
+                <h1><%= title %></h1>
+                
+                <%# Flash Messages %>
+                <%- messages() %>
+
+                <%# Validation Errors %>
+                <% if (typeof errors !== 'undefined' && errors) { %>
+                  <div class="validation-errors">
+                    <ul>
+                      <% errors.array().forEach(error => { %>
+                        <li><%= error.msg %></li>
+                      <% }) %>
+                    </ul>
+                  </div>
+                <% } %>
+
+                <form action="/account/register" method="post" class="register-form">
+                    <div class="form-group">
+                        <label for="account_firstname">First Name:</label>
+                        <input type="text" id="account_firstname" name="account_firstname" required 
+                               placeholder="Enter your first name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account_lastname">Last Name:</label>
+                        <input type="text" id="account_lastname" name="account_lastname" required 
+                               placeholder="Enter your last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account_email">Email Address:</label>
+                        <input type="email" id="account_email" name="account_email" required 
+                               placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group password-group">
+                        <label for="account_password">Password:</label>
+                        <div class="password-requirements">
+                            <p><strong>Password must contain:</strong></p>
+                            <ul>
+                                <li>At least 12 characters</li>
+                                <li>At least 1 uppercase letter</li>
+                                <li>At least 1 number</li>
+                                <li>At least 1 special character (!@#$%^&*)</li>
+                            </ul>
+                        </div>
+                        <input type="password" id="account_password" name="account_password" required 
+                               placeholder="Must meet all requirements above">
+                        <button type="button" class="toggle-password" aria-label="Show password">👁️</button>
+                    </div>
+
+                    <button type="submit" class="btn-register">Register</button>
+                </form>
+
+                <div class="login-link">
+                    <p>Already have an account? <a href="/account/login">Login here</a></p>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+    
+    <script>
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('.toggle-password');
+            const passwordInput = document.getElementById('account_password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle eye icon
+                this.textContent = type === 'password' ? '👁️' : '🔒';
+            });
+        });
+    </script>
+</body>
+</html>
