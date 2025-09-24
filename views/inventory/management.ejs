@@ -1,0 +1,34 @@
+<%- include('../partials/head', {title: title}) %>
+
+<body>
+    <div id="wrapper">
+        <%- include('../partials/header') %>
+        <%- include('../partials/navigation') %>
+
+        <main>
+            <div class="management-container">
+                <h1><%= title %></h1>
+                
+                <%# Flash Messages %>
+                <%- messages() %>
+
+                <div class="management-links">
+                    <div class="management-card">
+                        <h2>Classification Management</h2>
+                        <p>Add new vehicle classifications to the system</p>
+                        <a href="/inv/add-classification" class="btn-management">Add New Classification</a>
+                    </div>
+
+                    <div class="management-card">
+                        <h2>Inventory Management</h2>
+                        <p>Add new vehicles to the inventory</p>
+                        <a href="/inv/add-inventory" class="btn-management">Add New Inventory</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

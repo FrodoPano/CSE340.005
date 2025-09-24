@@ -1,0 +1,44 @@
+<%- include('../partials/head', {title: title}) %>
+
+<body>
+    <div id="wrapper">
+        <%- include('../partials/header') %>
+        <%- include('../partials/navigation') %>
+
+        <main>
+            <div class="form-container">
+                <h1><%= title %></h1>
+                
+                <%# Flash Messages %>
+                <%- messages() %>
+
+                <%# Validation Errors %>
+                <% if (typeof errors !== 'undefined' && errors) { %>
+                  <div class="validation-errors">
+                    <ul>
+                      <% errors.array().forEach(error => { %>
+                        <li><%= error.msg %></li>
+                      <% }) %>
+                    </ul>
+                  </div>
+                <% } %>
+
+                <form action="/inv/add-classification" method="post" class="classification-form">
+                    <div class="form-group">
+                        <label for="classification_name">Classification Name:</label>
+                        <input type="text" id="classification_name" name="classification_name" required 
+                               placeholder="Enter classification name (no spaces or special characters)"
+                               pattern="^[a-zA-Z0-9]+$"
+                               title="No spaces or special characters allowed">
+                        <p class="form-help">Classification name cannot contain spaces or special characters.</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Add Classification</button>
+                </form>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>
