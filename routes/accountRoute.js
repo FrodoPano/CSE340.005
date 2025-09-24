@@ -20,10 +20,11 @@ router.post(
 )
 
 // Process the login attempt
-router.post("/login", (req, res) => {
-  // This will be implemented later for actual login functionality
-  req.flash("notice", "Login functionality coming soon!")
-  res.redirect("/account/login")
-})
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.loginAccount)
+)
 
 module.exports = router
