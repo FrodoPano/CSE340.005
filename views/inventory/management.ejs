@@ -25,10 +25,28 @@
                         <a href="/inv/add-inventory" class="btn-management">Add New Inventory</a>
                     </div>
                 </div>
+
+                <div class="inventory-management-section">
+                    <h2>Manage Inventory</h2>
+                    <p>Select a classification from the list to see the items belonging to the classification.</p>
+                    
+                    <%# Classification Select List %>
+                    <div class="form-group">
+                        <label for="classificationList">Select Classification:</label>
+                        <%- classificationSelect %>
+                    </div>
+
+                    <%# Inventory Display Table %>
+                    <table id="inventoryDisplay"></table>
+
+                    <noscript>JavaScript must be enabled to use this page.</noscript>
+                </div>
             </div>
         </main>
 
         <%- include('../partials/footer') %>
     </div>
+    
+    <script src="../../js/inventory.js"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 const accountController = {}
 
@@ -81,44 +83,47 @@ accountController.registerAccount = async function (req, res) {
 /* ***************************
  * Process Login
  * ************************** */
-accountController.loginAccount = async function (req, res) {
+accountController.accountLogin = async function (req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  
+  if (!accountData) {
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+    return
+  }
   
   try {
-    const account = await accountModel.getAccountByEmail(account_email)
-    
-    if (!account) {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      delete accountData.account_password
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+      
+      if(process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
+      
+      req.flash("notice", `Welcome back, ${accountData.account_firstname}!`)
+      return res.redirect("/account/")
+    } else {
       req.flash("notice", "Please check your credentials and try again.")
-      return res.status(400).render("account/login", {
+      res.status(400).render("account/login", {
         title: "Login",
         nav,
         errors: null,
         account_email,
       })
     }
-    
-    // Compare hashed password with plain text password
-    const isPasswordValid = await bcrypt.compareSync(account_password, account.account_password)
-    
-    if (!isPasswordValid) {
-      req.flash("notice", "Please check your credentials and try again.")
-      return res.status(400).render("account/login", {
-        title: "Login",
-        nav,
-        errors: null,
-        account_email,
-      })
-    }
-    
-    // If we get here, login was successful
-    req.flash("notice", `Welcome back, ${account.account_firstname}!`)
-    // TODO: Set up session here
-    res.redirect("/")
-    
   } catch (error) {
     req.flash("notice", "Sorry, there was an error processing your login.")
-    res.render("account/login", {
+    res.status(500).render("account/login", {
       title: "Login",
       nav,
       errors: null,
@@ -127,5 +132,26 @@ accountController.loginAccount = async function (req, res) {
   }
 }
 
+
+/* ****************************************
+ * Build account management view
+ * ************************************ */
+accountController.buildManagement = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+  })
+}
+
+/* ****************************************
+ * Process logout request
+ * ************************************ */
+accountController.accountLogout = async function (req, res, next) {
+  res.clearCookie("jwt")
+  req.flash("notice", "You have been logged out successfully.")
+  res.redirect("/")
+}
 
 module.exports = accountController
