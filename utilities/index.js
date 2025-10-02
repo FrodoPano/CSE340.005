@@ -152,5 +152,17 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+/* ****************************************
+ * Check Authorization
+ **************************************** */
+Util.requireAuth = (req, res, next) => {
+  if (res.locals.loggedin && (res.locals.accountData.account_type === 'Employee' || res.locals.accountData.account_type === 'Admin')) {
+    next()
+  } else {
+    req.flash("notice", "Access denied. Employee or Admin privileges required.")
+    res.redirect("/account/login")
+  }
+}
+
 
 module.exports = Util

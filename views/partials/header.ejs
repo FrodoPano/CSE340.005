@@ -4,7 +4,9 @@
   </span>
   <div id="tools">
     <% if (typeof loggedin !== 'undefined' && loggedin) { %>
-      <a title="Account Management" href="/account/">My Account</a> | 
+      <span class="welcome-link">
+        <a href="/account/" title="Account Management">Welcome <%= accountData.account_firstname %></a>
+      </span> | 
       <a title="Logout" href="/account/logout">Logout</a>
     <% } else { %>
       <a title="Click to log in" href="/account/login">My Account</a>

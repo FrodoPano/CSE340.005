@@ -47,4 +47,28 @@ router.post("/add-inventory",
   regValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory))
 
+
+// Protect inventory management routes
+router.get("/", utilities.requireAuth, utilities.handleErrors(invController.buildManagement))
+router.get("/add-classification", utilities.requireAuth, utilities.handleErrors(invController.buildAddClassification))
+router.post("/add-classification", 
+  utilities.requireAuth,
+  regValidate.classificationRules(),
+  regValidate.checkClassificationData,
+  utilities.handleErrors(invController.addClassification))
+router.get("/add-inventory", utilities.requireAuth, utilities.handleErrors(invController.buildAddInventory))
+router.post("/add-inventory", 
+  utilities.requireAuth,
+  regValidate.inventoryRules(),
+  regValidate.checkInventoryData,
+  utilities.handleErrors(invController.addInventory))
+router.get("/edit/:inv_id", utilities.requireAuth, utilities.handleErrors(invController.editInventoryView))
+router.post("/update", 
+  utilities.requireAuth,
+  regValidate.inventoryRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory))
+router.get("/delete/:inv_id", utilities.requireAuth, utilities.handleErrors(invController.buildDeleteConfirmation))
+router.post("/delete", utilities.requireAuth, utilities.handleErrors(invController.deleteInventory))
+
 module.exports = router
