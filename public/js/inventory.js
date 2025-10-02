@@ -22,6 +22,7 @@ classificationList.addEventListener("change", function () {
   })
 })
 
+
 // Build inventory items into HTML table components and inject into DOM 
 function buildInventoryList(data) {
   let inventoryDisplay = document.getElementById("inventoryDisplay");

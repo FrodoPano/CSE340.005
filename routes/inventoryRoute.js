@@ -27,6 +27,12 @@ router.post("/update",
   regValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory))
 
+// Route to build delete confirmation view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirmation))
+
+// Route to delete inventory
+router.post("/delete", utilities.handleErrors(invController.deleteInventory))
+
 // Add classification routes
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
 router.post("/add-classification", 
