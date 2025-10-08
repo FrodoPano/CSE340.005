@@ -19,6 +19,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute")
 
 
 /* ***********************
@@ -81,6 +82,8 @@ app.use("/account", accountRoute)
 app.get("/error-test", utilities.handleErrors(async (req, res, next) => {
   throw new Error("Intentional 500 error for testing")
 }))
+
+app.use("/reviews", utilities.handleErrors(reviewRoute))
 
 
 /* ***********************

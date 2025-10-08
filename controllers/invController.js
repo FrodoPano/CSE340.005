@@ -145,12 +145,14 @@ invCont.buildVehicleDetail = async function (req, res, next) {
     }
     
     const detailHTML = await utilities.buildVehicleDetail(vehicle)
+    const reviewHTML = await utilities.buildReviewSection(vehicle, res.locals.accountData || null)
     let nav = await utilities.getNav()
     
     res.render("./inventory/detail", {
       title: `${vehicle.inv_make} ${vehicle.inv_model}`,
       nav,
       detailHTML,
+      reviewHTML,
     })
   } catch (error) {
     next(error)

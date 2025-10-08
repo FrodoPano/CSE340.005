@@ -1154,3 +1154,150 @@ input[readonly] {
     border-bottom: 2px solid #ecf0f1;
     padding-bottom: 0.5rem;
 }
+
+/* Reviews Section Styles */
+.reviews-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #ecf0f1;
+}
+
+.rating-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rating-stars {
+  font-size: 1.5rem;
+  color: #f39c12;
+}
+
+.rating-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.review-count {
+  color: #7f8c8d;
+}
+
+.btn-review {
+  background: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn-review:hover {
+  background: #2980b9;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ecf0f1;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.review-date {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.review-rating {
+  color: #f39c12;
+  font-size: 1.1rem;
+}
+
+.review-text {
+  line-height: 1.6;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.review-actions {
+  text-align: right;
+}
+
+.review-actions a {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.review-actions a:hover {
+  text-decoration: underline;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Review Form Styles */
+.review-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.review-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.btn-cancel {
+  background: #95a5a6;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-left: 1rem;
+}
+
+.btn-cancel:hover {
+  background: #7f8c8d;
+}

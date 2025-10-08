@@ -165,4 +165,85 @@ Util.requireAuth = (req, res, next) => {
 }
 
 
+// Add this function to utilities/index.js
+Util.buildReviewSection = async function(vehicle, accountData = null) {
+  const reviewModel = require("../models/review-model")
+  const reviews = await reviewModel.getReviewsByInventoryId(vehicle.inv_id)
+  const ratingData = await reviewModel.getAverageRating(vehicle.inv_id)
+  
+  let reviewHTML = `
+    <div class="reviews-section">
+      <h2>Customer Reviews</h2>
+      <div class="rating-summary">
+        <div class="average-rating">
+          <span class="rating-stars">${Util.generateStars(ratingData.average_rating)}</span>
+          <span class="rating-number">${ratingData.average_rating}/5</span>
+          <span class="review-count">(${ratingData.review_count} reviews)</span>
+        </div>
+  `
+  
+  // Add review button if user is logged in and hasn't reviewed
+  if (accountData) {
+    const hasReviewed = await reviewModel.hasUserReviewed(accountData.account_id, vehicle.inv_id)
+    if (!hasReviewed) {
+      reviewHTML += `
+        <a href="/reviews/add/${vehicle.inv_id}" class="btn-review">Write a Review</a>
+      `
+    }
+  } else {
+    reviewHTML += `
+      <p><a href="/account/login">Log in</a> to write a review</p>
+    `
+  }
+  
+  reviewHTML += `</div>`
+  
+  if (reviews.length > 0) {
+    reviewHTML += `<div class="reviews-list">`
+    reviews.forEach(review => {
+      reviewHTML += `
+        <div class="review-item">
+          <div class="review-header">
+            <span class="reviewer-name">${review.account_firstname} ${review.account_lastname}</span>
+            <span class="review-date">${new Date(review.review_date).toLocaleDateString()}</span>
+            <span class="review-rating">${Util.generateStars(review.review_rating)}</span>
+          </div>
+          <div class="review-text">${review.review_text}</div>
+          ${accountData && (accountData.account_id === review.account_id || accountData.account_type === 'Admin') ? `
+            <div class="review-actions">
+              <a href="/reviews/edit/${review.review_id}">Edit</a> | 
+              <a href="/reviews/delete/${review.review_id}" onclick="return confirm('Are you sure you want to delete this review?')">Delete</a>
+            </div>
+          ` : ''}
+        </div>
+      `
+    })
+    reviewHTML += `</div>`
+  } else {
+    reviewHTML += `
+      <div class="no-reviews">
+        <p>No reviews yet. Be the first to review this vehicle!</p>
+      </div>
+    `
+  }
+  
+  reviewHTML += `</div>`
+  return reviewHTML
+}
+
+// Add helper function for star ratings
+Util.generateStars = function(rating) {
+  const fullStars = Math.floor(rating)
+  const halfStar = rating % 1 >= 0.5
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0)
+  
+  let stars = '★'.repeat(fullStars)
+  if (halfStar) stars += '½'
+  stars += '☆'.repeat(emptyStars)
+  
+  return stars
+}
+
+
+
 module.exports = Util
